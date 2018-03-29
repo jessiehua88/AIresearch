@@ -8,8 +8,9 @@ mnist = input_data.read_data_sets(FLATS.data_dir, one_hot=TRUE)
 
 # Hyperparmeters
 parser = argparse.ArgumentParser()
-parser.add_argument('--batch', type = int. default = 100)
-parser.add_argument('--layers', type = int. default = 3)
+parser.add_argument('--batch', type = int, default=100)
+parser.add_argument('--layers', type = int, default=3)
+parser.add_argument('--size', type = int, default=784)
 args = parser.parse_args()
 print("Our arguments:\n{}".format(args))
 
@@ -20,7 +21,12 @@ def make_ff_layer(size, x):
     x = tf.keras.layers.Dense(10)(x)
     return x
 
+x = tf.placeholder(tf.float32, [None, 784])
+y = tf.placeholder(tf.float32, [None, 10])
+y_logits = make_ff_layer(args.size, x)
+y_softmax = tf.nn.softmax(y_logits)
 
+   
 
 
 
