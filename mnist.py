@@ -13,11 +13,14 @@ parser.add_argument('--layers', type = int. default = 3)
 args = parser.parse_args()
 print("Our arguments:\n{}".format(args))
 
+# Constructing layer
 def make_ff_layer(size, x):
     for i in range(1, args.layers):
         x = tf.nn.relu(tf.keras.layers.Dense(size)(x))
     x = tf.keras.layers.Dense(10)(x)
     return x
+
+
 
 
 
