@@ -1,10 +1,12 @@
 import argparse, random, sys
+import matplotlib.pyplot as plt
+
 import tensorflow as tf
 import numpy as np
 
 # Download dataset
 from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets(FLATS.data_dir, one_hot=TRUE)
+mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 
 # Hyperparmeters
 parser = argparse.ArgumentParser()
@@ -23,11 +25,11 @@ def make_ff_layer(size, x):
 
 x = tf.placeholder(tf.float32, [None, 784])
 y = tf.placeholder(tf.float32, [None, 10])
+x, y = mnist.train.next_batch(args.batch)
 y_logits = make_ff_layer(args.size, x)
 y_softmax = tf.nn.softmax(y_logits)
 
-   
-
+plt.plot(y, y_softmax)
 
 
 
